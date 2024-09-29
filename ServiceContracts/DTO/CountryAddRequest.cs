@@ -11,6 +11,5 @@ namespace ServiceContracts.DTO
     {
         public string? CountryName { get; set; }
 
-        public Country ToCountry() => new Country { CountryName = CountryName };
     }
 }
