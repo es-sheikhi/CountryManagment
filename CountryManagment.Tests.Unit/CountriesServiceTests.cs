@@ -47,7 +47,7 @@ namespace CountryManagment.Tests.Unit
         }
 
         [Fact]
-        public void AddCountry_ShouldThrowException_WhenCountryNameIsDuplicated()
+        public void AddCountry_ShouldThrowException_WhenCountryNameIsDuplicate()
         {
             //Arrange
             CountryAddRequest countryAddRequest1 = new()
@@ -56,7 +56,7 @@ namespace CountryManagment.Tests.Unit
             };
             CountryAddRequest countryAddRequest2 = new()
             {
-                CountryName = "USA"
+                CountryName = "UK"
             };
 
             //Act
@@ -64,7 +64,7 @@ namespace CountryManagment.Tests.Unit
             var result = () => _countriesService.AddCountry(countryAddRequest2);
 
             //Assert
-            Assert.Throws<ArgumentException>(result);
+            Assert.Throws<Exception>(result);
         }
 
         [Fact]
