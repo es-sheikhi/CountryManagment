@@ -17,6 +17,7 @@ namespace CountryManagment.Tests.Unit
             _countriesService = new CountriesService();
         }
 
+        #region AddCountry
         [Fact]
         public void AddCountry_ShouldThrowException_WhenCountryIsNull()
         {
@@ -78,10 +79,95 @@ namespace CountryManagment.Tests.Unit
 
             //Act
             var result = _countriesService.AddCountry(countryAddRequest);
+            var countryList = _countriesService.GetAllCountries();
 
             //Assert
             Assert.True(result?.CountryId != null);
+            Assert.Contains(result, countryList);
         }
+        #endregion
+
+        #region GetAllCountries
+        [Fact]
+        public void GetAllCountries_ShouldBeEmpty_WhenNothingIsAdded()
+        {
+            //Arrange
+            CountryAddRequest countryAddRequest = new()
+            {
+                CountryName = "Germany"
+            };
+
+            //Act
+            var result = _countriesService.AddCountry(countryAddRequest);
+            var countryList = _countriesService.GetAllCountries();
+
+            //Assert
+            Assert.NotEmpty(countryList);
+        }
+
+        [Fact]
+        public void GetAllCountries_ShouldNotBeNull_WhenSomethingIsAdded()
+        {
+            //Arrange
+
+            //Act
+            var countryList = _countriesService.GetAllCountries();
+
+            //Assert
+            Assert.Empty(countryList);
+        }
+        #endregion
+
+        #region GetCountryByCountryId
+
+        [Fact]
+        public void GetCountryByCountryId_ShouldThrowException_WhenCountryIdIsNull()
+        {
+            //Arrange
+            Guid? countryId = null;
+
+            //Act
+            var result = () => _countriesService.GetCountryByCountryId(countryId);
+
+            //Assert
+            Assert.Throws<ArgumentNullException>(result);
+        }
+
+        [Fact]
+        public void GetCountryByCountryId_ShouldReturnNull_WhenCountryIdIsNotValid()
+        {
+            //Arrange
+            CountryAddRequest countryAddRequest = new()
+            {
+                CountryName = "Germany"
+            };
+
+
+            //Act
+            var result = _countriesService.AddCountry(countryAddRequest);
+            var response = _countriesService.GetCountryByCountryId(new Guid());
+
+            //Assert
+            Assert.Null(response);
+        }
+
+        [Fact]
+        public void GetCountryByCountryId_ShouldReturnCountry_WhenCountryIdIsValid()
+        {
+            //Arrange
+            CountryAddRequest countryAddRequest = new()
+            {
+                CountryName = "Germany"
+            };
+
+            var result = _countriesService.AddCountry(countryAddRequest);
+            var response = _countriesService.GetCountryByCountryId(result.CountryId);
+
+            //Assert
+            Assert.Equal(result, response);
+        }
+
+        #endregion
 
     }
 }

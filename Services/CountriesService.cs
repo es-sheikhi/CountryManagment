@@ -23,22 +23,37 @@ namespace Services
             {
                 throw new ArgumentNullException(nameof(countryAddRequest));
             }
-
             if (countryAddRequest.CountryName == null)
             {
                 throw new ArgumentException(nameof(countryAddRequest.CountryName));
             }
 
             Country country = countryAddRequest.ToCountry();
+            country.CountryId =Guid.NewGuid();
 
             if (_countries.Where(c => c.CountryName == country.CountryName).Count() > 0)
             {
                 throw new Exception($"Country name : {nameof(country.CountryName)} is duplicate!");
             }    
-
             _countries.Add(country);
-
             return country.ToCountryResponse();
+        }
+
+        public List<CountryResponse> GetAllCountries()
+        {
+            var countryList = _countries.Select(c => c.ToCountryResponse())
+                .ToList();
+            return countryList;
+        }
+
+        public CountryResponse? GetCountryByCountryId(Guid? countryId)
+        {
+            if (countryId == null)
+                throw new ArgumentNullException(nameof(countryId));
+
+            CountryResponse? country = _countries.FirstOrDefault(c => c.CountryId == countryId)
+                ?.ToCountryResponse();
+            return country;
         }
     }
 }
