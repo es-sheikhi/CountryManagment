@@ -22,7 +22,7 @@ namespace ServiceContracts
         /// <summary>
         /// Returns all Countries
         /// </summary>
-        /// <returns>Return All Countries a list of<CountryResponse></returns>
+        /// <returns>Return All Countries as a list of<CountryResponse></returns>
         List<CountryResponse> GetAllCountries();
 
         /// <summary>
