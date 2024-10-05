@@ -92,6 +92,18 @@ namespace CountryManagment.Tests.Unit
         public void GetAllCountries_ShouldBeEmpty_WhenNothingIsAdded()
         {
             //Arrange
+
+            //Act
+            var countryList = _countriesService.GetAllCountries();
+
+            //Assert
+            Assert.Empty(countryList);
+        }
+
+        [Fact]
+        public void GetAllCountries_ShouldNotBeNull_WhenSomethingIsAdded()
+        {
+            //Arrange
             CountryAddRequest countryAddRequest = new()
             {
                 CountryName = "Germany"
@@ -103,18 +115,6 @@ namespace CountryManagment.Tests.Unit
 
             //Assert
             Assert.NotEmpty(countryList);
-        }
-
-        [Fact]
-        public void GetAllCountries_ShouldNotBeNull_WhenSomethingIsAdded()
-        {
-            //Arrange
-
-            //Act
-            var countryList = _countriesService.GetAllCountries();
-
-            //Assert
-            Assert.Empty(countryList);
         }
         #endregion
 
