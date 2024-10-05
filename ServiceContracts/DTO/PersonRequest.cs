@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace ServiceContracts.DTO
 {
     /// <summary>
-    /// Acts as a DTO to insert a person
+    /// Acts as a DTO to manipulate a person
     /// </summary>
-    public class PersonAddRequest
+    public class PersonRequest
     {
         [Required]
         public required string PersonName { get; set; }

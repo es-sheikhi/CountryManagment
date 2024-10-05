@@ -23,7 +23,7 @@ namespace PersonManagment.Tests.Unit
         public void AddPerson_ShouldThrowException_WhenPersonIsNull()
         {
             //Arrange
-            PersonAddRequest personAddRequest = null;
+            PersonRequest personAddRequest = null;
 
             //Act
             var response=()=>_personsService.AddPerson(personAddRequest);
@@ -36,7 +36,7 @@ namespace PersonManagment.Tests.Unit
         public void AddPerson_ShouldThrowException_WhenPersonNameIsNull()
         {
             //Arrange
-            PersonAddRequest personAddRequest = new PersonAddRequest
+            PersonRequest personAddRequest = new PersonRequest
             {
                 PersonName = null
             };
@@ -51,7 +51,7 @@ namespace PersonManagment.Tests.Unit
         public void AddPerson_ShouldReturnProperPerson_WhenEverythingIsOK()
         {
             //Arrange
-            PersonAddRequest personAddRequest = new PersonAddRequest
+            PersonRequest personAddRequest = new PersonRequest
             {
                 PersonName = "Test",
                 EmailAddress = "Test@google.com",
@@ -84,7 +84,7 @@ namespace PersonManagment.Tests.Unit
         public void GetAllPersons_ShouldNotBeNull_WhenSomethingIsAdded()
         {
             //Arrange
-            PersonAddRequest PersonAddRequest = new()
+            PersonRequest PersonAddRequest = new()
             {
                 PersonName = "Test",
                 EmailAddress = "Test@google.com",
@@ -121,7 +121,7 @@ namespace PersonManagment.Tests.Unit
         public void GetPersonByPersonId_ShouldReturnNull_WhenPersonIdIsNotValid()
         {
             //Arrange
-            PersonAddRequest PersonAddRequest = new()
+            PersonRequest PersonAddRequest = new()
             {
                 PersonName = "Test",
                 EmailAddress = "Test@google.com",
@@ -142,7 +142,7 @@ namespace PersonManagment.Tests.Unit
         public void GetPersonByPersonId_ShouldReturnPerson_WhenPersonIdIsValid()
         {
             //Arrange
-            PersonAddRequest PersonAddRequest = new()
+            PersonRequest PersonAddRequest = new()
             {
                 PersonName = "Test",
                 EmailAddress = "Test@google.com",

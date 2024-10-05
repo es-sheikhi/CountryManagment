@@ -17,7 +17,7 @@ namespace ServiceContracts
         /// </summary>
         /// <param name="personAddRequest">Person object to add</param>
         /// <returns>Returns the Person Object after adding it</returns>
-        PersonResponse AddPerson(PersonAddRequest? personAddRequest);
+        PersonResponse AddPerson(PersonRequest? personAddRequest);
         
         /// <summary>
         /// Get all persons from the datasource
@@ -31,5 +31,19 @@ namespace ServiceContracts
         /// <param name="personId">The id of person to be returned</param>
         /// <returns>A person whose personId is equal to given personId</returns>
         PersonResponse? GetPersonByPersonId(Guid? personId);
+        
+        /// <summary>
+        /// Removing a Person from the datasource
+        /// </summary>
+        /// <param name="personId">The Id of person to be deleted</param>
+        /// <returns>Returns a bool value indicated that the remove was sucessful or not</returns>
+        bool DeletePerson(Guid? personId);
+
+        /// <summary>
+        /// Update a person from the datasource
+        /// </summary>
+        /// <param name="personRequest">Person object to update</param>
+        /// <returns>Returns the updated person</returns>
+        PersonResponse UpdatePerson(PersonRequest? personRequest);
     }
 }

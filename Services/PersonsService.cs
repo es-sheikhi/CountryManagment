@@ -17,7 +17,7 @@ namespace Services
         {
             _persons = new List<Person>();
         }
-        public PersonResponse AddPerson(PersonAddRequest? personAddRequest)
+        public PersonResponse AddPerson(PersonRequest? personAddRequest)
         {
             if (personAddRequest == null)
             {
@@ -50,6 +50,16 @@ namespace Services
             PersonResponse? personResponse = _persons.FirstOrDefault(c => c.PersonId == personId)
                 ?.ToPersonResponse();
             return personResponse;
+        }
+
+        public bool DeletePerson(Guid? personId)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public PersonResponse UpdatePerson(PersonRequest? personRequest)
+        {
+            throw new NotImplementedException();
         }
     }
 }

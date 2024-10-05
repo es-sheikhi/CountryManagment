@@ -10,7 +10,7 @@ namespace ServiceContracts.Extensions
 {
     public static class PersonExtensions
     {
-        public static Person ToPerson(this PersonAddRequest request)=>
+        public static Person ToPerson(this PersonRequest request)=>
             new Person
             { 
                 PersonName = request.PersonName ,
