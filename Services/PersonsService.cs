@@ -54,12 +54,34 @@ namespace Services
 
         public bool DeletePerson(Guid? personId)
         {
-            throw new NotImplementedException();
+            Person? matchingPerson = _persons.FirstOrDefault(temp => temp.PersonId == personId);
+            if (matchingPerson != null)
+            {
+                return _persons.Remove(matchingPerson);
+            }
+            return false;
         }
-        
+
         public PersonResponse UpdatePerson(PersonRequest? personRequest)
         {
-            throw new NotImplementedException();
+            if (personRequest == null)
+                throw new ArgumentNullException(nameof(Person));
+
+            
+            //get matching person object to update
+            Person? matchingPerson = _persons.FirstOrDefault(temp => temp.PersonId == personRequest.PersonId);
+            if (matchingPerson == null)
+            {
+                throw new ArgumentException("Given person id doesn't exist");
+            }
+
+            //update all details
+            matchingPerson.PersonName = personRequest.PersonName;
+            matchingPerson.EmailAddress = personRequest.EmailAddress;
+            matchingPerson.Gender = personRequest.Gender;
+            matchingPerson.CountryId = personRequest.CountryId;
+
+            return matchingPerson.ToPersonResponse();
         }
     }
 }

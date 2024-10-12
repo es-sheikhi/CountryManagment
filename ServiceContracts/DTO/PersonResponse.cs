@@ -13,7 +13,7 @@ namespace ServiceContracts.DTO
     /// </summary>
     public class PersonResponse
     {
-        public Guid PersonId { get; set; }
+        public Guid? PersonId { get; set; }
         public required string PersonName { get; set; }
         public string? EmailAddress { get; set; }
         public string? Gender { get; set; }

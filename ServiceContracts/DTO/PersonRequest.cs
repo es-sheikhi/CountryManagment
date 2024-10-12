@@ -13,6 +13,7 @@ namespace ServiceContracts.DTO
     /// </summary>
     public class PersonRequest
     {
+        public Guid? PersonId { set; get; }
         [Required]
         public required string PersonName { get; set; }
         [EmailAddress]
